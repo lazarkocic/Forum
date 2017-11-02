@@ -17,6 +17,7 @@
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
+
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -29,14 +30,28 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        Forum
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li class="nav-item">
+                          <a href="/threads">All threads</a>
+                        </li>
+
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Channels <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu">
+                            @foreach (App\Channel::all() as $channel)
+                              <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
+                            @endforeach
+                          </ul>
+                        </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

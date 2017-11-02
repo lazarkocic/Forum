@@ -32,7 +32,7 @@
     @if (auth()->check())
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <form action="/threads/{{$thread->id}}/replies" method="POST">
+          <form action="/threads/{{ $thread->channel->id }}/{{$thread->id}}/replies" method="POST">
             {{ csrf_field() }}
             <div class="form-group">
               <label for="body">Body:</label>
@@ -42,6 +42,12 @@
               <button type="submit" class="btn btn-primary">Post</button>
             </div>
           </form>
+        </div>
+      </div>
+    @else
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <p>Please <a href="{{ route('login') }}">sign in</a> to participate</p>
         </div>
       </div>
     @endif
