@@ -21,11 +21,19 @@ class ThreadsController extends Controller
     public function index(Channel $channel)
     {
       if ($channel->exists) {
-        $threads = $channel->threads()->latest()->get();
+        $threads = $channel->threads()->latest();
       }
       else {
-        $threads = Thread::latest()->get();
+        $threads = Thread::latest();
       }
+
+      if ($username = request('by'))
+      {
+        $user = \App\User::where('name', $username)->firstOrFail();
+        $threads->where('user_id', $user->id);
+      }
+
+      $threads = $threads->get();
 
       return view('threads.index', compact('threads'));
     }
@@ -48,15 +56,19 @@ class ThreadsController extends Controller
      */
     public function store(Request $request)
     {
+      //dd(request()->all());
+
       $this->validate($request, [
         'title' => 'required',
         'body' => 'required',
-        'channel_id' => 'required|exists:channels, id'
+        'channel_id' => 'exists:channels,id' // Validation 'required' not working!!!
       ]);
+
+      //dd(request()->all());
 
       $thread = Thread::create([
         'user_id' => auth()->id(),
-        'channel_id' => request('channel_id'),
+        'channel_id' => request('channel-id'),
         'title' => request('title'),
         'body' => request('body')
       ]);

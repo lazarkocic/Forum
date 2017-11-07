@@ -37,8 +37,26 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Browse <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li class="nav-item">
+                              <a href="/threads">All threads</a>
+                            </li>
+
+                            @if (auth()->check())
+                              <li class="nav-item">
+                                <a href="/threads?by={{ auth()->user()->name }}">My threads</a>
+                              </li>
+                            @endif
+                          </ul>
+                        </li>
+
                         <li class="nav-item">
-                          <a href="/threads">All threads</a>
+                          <a href="/threads/create">New thread</a>
                         </li>
 
                         <li class="dropdown">
@@ -46,7 +64,7 @@
                             Channels <span class="caret"></span>
                           </a>
                           <ul class="dropdown-menu">
-                            @foreach (App\Channel::all() as $channel)
+                            @foreach ($channels as $channel)
                               <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
                             @endforeach
                           </ul>
