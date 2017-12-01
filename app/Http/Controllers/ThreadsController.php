@@ -23,6 +23,10 @@ class ThreadsController extends Controller
     {
       $threads = $this->getThreads($channel, $filters);
 
+      if (request()->wantsJson()) {
+        return $threads;
+      }
+
       return view('threads.index', compact('threads'));
     }
 
@@ -109,17 +113,19 @@ class ThreadsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Thread $thread)
-    {
+    { 
         //
     }
 
-    public function getThreads($channel, $filters)
+    public function getThreads(Channel $channel, ThreadFilters $filters)
     {
       $threads = Thread::latest()->filter($filters);
 
       if ($channel->exists) {
         $threads->where('channel_id', $channel->id);
       }
+
+      //dd($threads->toSql()); // Return sql query from eloquent, easy to see where something wrong
 
       return $threads->get();
     }
