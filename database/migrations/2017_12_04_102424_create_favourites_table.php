@@ -19,6 +19,8 @@ class CreateFavouritesTable extends Migration
             $table->unsignedInteger('favourited_id');
             $table->string('favourited_type', 50); // Setting maximum 50 chars
             $table->timestamps();
+            
+            $table->unique(['user_id', 'favourited_id', 'favourited_type']);
         });
     }
 
