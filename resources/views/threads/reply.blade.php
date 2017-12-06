@@ -5,7 +5,7 @@
 
       <div class="flex">
 
-        <a href="#">{{ $reply->owner->name }}</a> said
+        <a href="/profiles/{{ $reply->owner->name }}">{{ $reply->owner->name }}</a> said
         <strong>{{ $reply->created_at->diffForHumans() }}</strong>
 
       </div>
@@ -24,10 +24,6 @@
     </div>
 
   </div>
-
-  
-   
-  
 
   <div class="panel-body">
     {{ $reply->body }}
