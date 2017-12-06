@@ -7,8 +7,25 @@
         <div class="panel panel-default">
 
           <div class="panel-heading">
-            <a href="/profiles/{{ $thread->creator->name }}">{{ $thread->creator->name }}</a> posted:
-            <strong>{{ $thread->title }}</strong>
+            <div class="level">
+
+              
+              <div class="flex">
+
+                <a href="/profiles/{{ $thread->creator->name }}">{{ $thread->creator->name }}</a> posted:
+                <strong>{{ $thread->title }}</strong>
+
+              </div>
+
+              <form method="POST" action="/{{ $thread->path() }}">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-danger">Delete</button>
+
+              </form>
+
+            </div>
+            
           </div>
 
           <div class="panel-body">
