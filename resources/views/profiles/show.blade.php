@@ -17,7 +17,7 @@
                         <div class="panel-heading">
                             <div class="level">
 
-                                <strong class="flex">{{ $thread->title }}</strong>
+                                <strong class="flex"><a href="/{{ $thread->path() }}">{{ $thread->title }}</a></strong> 
                                 <small>{{ $thread->created_at->diffForHumans() }}</small>
 
                             </div>

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            @foreach ($threads as $thread)
+            @forelse ($threads as $thread)
                 <div class="panel panel-default">
                     <div class="panel-heading">
 
@@ -24,7 +24,11 @@
                         
                     </div>
                 </div>
-            @endforeach
+            @empty
+
+                <h1 class="text-danger">There are no relevant threads</h1>
+                
+            @endforelse
         </div>
     </div>
 </div>

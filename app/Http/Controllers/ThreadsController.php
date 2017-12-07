@@ -115,6 +115,16 @@ class ThreadsController extends Controller
     public function destroy($channel, Thread $thread)
     { 
         //$thread->replies()->delete(); // Deleted in Thread boot method
+        // if ($thread->user_id !=  auth()->id()) {
+        //   /*if (request()->wantsJson()) {
+        //     return response(['status' => 'Permission denied'], 403);
+        //   }
+        //   return redirect('/login');*/
+
+        //   abort(403, 'You don\'t have permission to do this.');
+        // }
+
+        $this->authorize('update', $thread);
         $thread->delete();
 
         if (request()->wantsJson()) {
@@ -134,7 +144,6 @@ class ThreadsController extends Controller
       }
 
       //dd($threads->toSql()); // Return sql query from eloquent, easy to see where something wrong
-
       return $threads->get();
     }
 }

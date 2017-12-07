@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Create a thread</div>
+                <div class="panel-heading"><h1 class="text-primary">Create a thread</h1></div>
 
                 <div class="panel-body">
                   <form action="/threads" method="POST">
