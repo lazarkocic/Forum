@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Activity;
+use App\RecordsActivity;
 
 class Thread extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
     protected $with = ['creator', 'channel'];
     
@@ -21,7 +25,7 @@ class Thread extends Model
         $thread->replies()->delete();
       });
     }
-
+    
     public function path()
     {
       return "threads/{$this->channel->slug}/$this->id";
