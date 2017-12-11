@@ -22,7 +22,10 @@ class Thread extends Model
       });
 
       static::deleting(function($thread) { // When deleting a thread, delete all associated replies
-        $thread->replies()->delete();
+        $thread->replies->each->delete();
+        // $thread->replies->each(function ($reply) {
+        //     $reply->delete();
+        // });
       });
     }
     
