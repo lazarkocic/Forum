@@ -11,6 +11,7 @@ class Reply extends Model
 
   protected $guarded = [];
   protected $with = ['owner', 'favourites'];
+  protected $appends = ['favouritesCount', 'isFavourited']; // Appends attributes when casted to JSON, function must have name getIsFavouritedAttributes
 
   public function thread()
   {
