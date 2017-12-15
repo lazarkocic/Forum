@@ -124,7 +124,6 @@ class ThreadsController extends Controller
 
         //   abort(403, 'You don\'t have permission to do this.');
         // }
-
         $this->authorize('update', $thread);
         $thread->delete();
 

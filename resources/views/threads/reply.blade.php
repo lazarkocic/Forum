@@ -12,12 +12,13 @@
 
         </div>
         
-        <div>
+        @if (auth()->check())
+          <div>
 
-          <favourite :reply="{{ $reply }}"></favourite>
+            <favourite :reply="{{ $reply }}"></favourite>
 
-        </div>
-
+          </div>
+        @endif
 
       </div>
 

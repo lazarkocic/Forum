@@ -10,7 +10,7 @@
                     <h4>Since {{ $profileUser->created_at->diffForHumans() }}</h4>
                 </div>
 
-                @foreach ($activities as $date => $activity)
+                @forelse ($activities as $date => $activity)
 
                     <h3 class="page-header">{{ $date }}</h3>
 
@@ -22,7 +22,9 @@
 
                     @endforeach
 
-                @endforeach
+                @empty
+                    <p class="alert alert-warning">No activity</p>
+                @endforelse
                 
             </div>
         </div>

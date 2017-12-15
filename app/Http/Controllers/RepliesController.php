@@ -27,7 +27,7 @@ class RepliesController extends Controller
         return back()->with('flash', 'Replied!');
     }
 
-    public function destroy(Reply $reply)     
+    public function destroy(Reply $reply)
     {
         // if ($reply->user_id != auth()->id()) {
         //   return response([], 403);
@@ -35,7 +35,7 @@ class RepliesController extends Controller
         $this->authorize('update', $reply);
 
         $reply->delete();
-
+        //dd($reply);
         if (request()->expectsJson()) {
             return response(['status' => 'Reply deleted']);
         }
