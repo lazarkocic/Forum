@@ -36,7 +36,9 @@
 
           </div>
 
-          <replies :data="{{ $thread->replies }}" @removed="repliesCount--"></replies>
+          <replies  :data="{{ $thread->replies }}" 
+                    @removed="repliesCount--"
+                    @added="repliesCount++"></replies>
 
           {{-- @foreach ($replies as $reply) --}}
           {{--  @include ('threads.reply') --}
@@ -46,20 +48,7 @@
 
           <hr>
 
-          @if (auth()->check())
-            <form action="/threads/{{ $thread->channel->id }}/{{$thread->id}}/replies" method="POST">
-              {{ csrf_field() }}
-              <div class="form-group">
-                <label for="body">Body:</label>
-                <textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="5"></textarea>
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary">Post</button>
-              </div>
-            </form>
-          @else
-            <p>Please <a href="{{ route('login') }}">sign in</a> to participate</p>
-          @endif
+          
         </div>
 
         <div class="col-md-4">
